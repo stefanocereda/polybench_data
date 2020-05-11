@@ -1,16 +1,26 @@
 # PolyBench compiler autotuning dataset 
-This repository contains the dataset we used for the paper "A Collaborative Filtering Approah for the Automatic Tuning of Compiler Optimisations" available at https://arxiv.org/abs/2005.04092
+This repository contains the dataset we used for the paper "A Collaborative Filtering Approah for the Automatic Tuning of Compiler Optimisations" available at https://arxiv.org/abs/2005.04092, which will be published in the 21st ACM SIGPLAN/SIGBED International Conference on Languages, Compilers, and Tools for Embedded Systems (LCTES 2020).
+
+If you use these data please cite our paper:
+@misc{cereda2020collaborative,
+    title={A Collaborative Filtering Approach for the Automatic Tuning of Compiler Optimisations},
+    author={Stefano Cereda and Gianluca Palermo and Paolo Cremonesi and Stefano Doni},
+    year={2020},
+    eprint={2005.04092},
+    archivePrefix={arXiv},
+    primaryClass={cs.DC}
+}
 
 ## Optimisations
 We following the approach used in https://github.com/amirjamez/COBAYN, and all the files have the same format used in COBAYN.
 We consider 7 binary GCC flags:
--funsafe-math-optimisations
--fno-guess-branch-probability
--fno-ivopts
--fno-tree-loop-optimise
--fno-inline-functions
--funroll-all-loops
--O2 or -O3
+- -funsafe-math-optimisations
+- -fno-guess-branch-probability
+- -fno-ivopts
+- -fno-tree-loop-optimise
+- -fno-inline-functions
+- -funroll-all-loops
+- -O2 or -O3
 For a total of 128 possible combinations.
 
 ## Instance
