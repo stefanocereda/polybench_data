@@ -14,7 +14,7 @@ If you use these data please cite our paper:
 ```
 
 ## Optimisations
-We following the approach used in https://github.com/amirjamez/COBAYN, and all the files have the same format used in COBAYN.
+We follow the approach used in https://github.com/amirjamez/COBAYN, and all the files have the same format used in COBAYN.
 We consider 7 binary GCC flags:
 - -funsafe-math-optimisations
 - -fno-guess-branch-probability
