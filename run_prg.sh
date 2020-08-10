@@ -15,4 +15,4 @@ max_dev=$(cat log | grep deviation | grep -o '[0-9.]*' | tail -1)
 file_size=$(stat -c %s ./out)
 
 cd ~
-echo ${PROGRAM},${OPTIONS},${avg},${max_dev} >> result.csv
+echo ${PROGRAM},${OPTIONS},${avg},${max_dev},${file_size} >> result.csv
