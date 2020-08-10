@@ -1,21 +1,21 @@
 # all the flags in -O3, start from -O2 in the bash script
 FLAGS = [
     "-fgcse-after-reload",
-    #"-fipa-cp-clone",
-    #"-floop-interchange",
-    #"-floop-unroll-and-jam",
-    #"-fpeel-loops",
-    #"-fpredictive-commoning",
-    #"-fsplit-loops",
-    #"-fsplit-paths",
-    #"-ftree-loop-distribution",
-    #"-ftree-loop-vectorize",
-    #"-ftree-partial-pre",
-    #"-ftree-slp-vectorize",
-    #"-funswitch-loops",
-    #"-fvect-cost-model",
-    #"-fvect-cost-model=dynamic",
-    #"-fversion-loops-for-strides"
+    "-fipa-cp-clone",
+    "-floop-interchange",
+    "-floop-unroll-and-jam",
+    "-fpeel-loops",
+    "-fpredictive-commoning",
+    "-fsplit-loops",
+    "-fsplit-paths",
+    "-ftree-loop-distribution",
+    "-ftree-loop-vectorize",
+    "-ftree-partial-pre",
+    "-ftree-slp-vectorize",
+    "-funswitch-loops",
+    "-fvect-cost-model",
+    "-fvect-cost-model=dynamic",
+    "-fversion-loops-for-strides"
 ]
 
 

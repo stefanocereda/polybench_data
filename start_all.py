@@ -1,14 +1,14 @@
 PROGRAMS = [
     "datamining/correlation/correlation",
-    #"datamining/covariance/covariance",
-    #"linear-algebra/blas/gemm/gemm",
-    #"linear-algebra/blas/gemver/gemver",
-    #"linear-algebra/blas/gesummv/gesummv",
-    #"linear-algebra/blas/symm/symm",
-    #"linear-algebra/blas/syr2k/syr2k",
-    #"linear-algebra/blas/syrk/syrk",
-    #"linear-algebra/blas/trmm/trmm",
-    #"linear-algebra/kernels/2mm/2mm",
+    "datamining/covariance/covariance",
+    "linear-algebra/blas/gemm/gemm",
+    "linear-algebra/blas/gemver/gemver",
+    "linear-algebra/blas/gesummv/gesummv",
+    "linear-algebra/blas/symm/symm",
+    "linear-algebra/blas/syr2k/syr2k",
+    "linear-algebra/blas/syrk/syrk",
+    "linear-algebra/blas/trmm/trmm",
+    "linear-algebra/kernels/2mm/2mm",
     #"linear-algebra/kernels/3mm/3mm",
     #"linear-algebra/kernels/atax/atax",
     #"linear-algebra/kernels/bicg/bicg",
@@ -31,17 +31,26 @@ PROGRAMS = [
     #"stencils/seidel-2d/seidel-2d"
 ]
 
-IPS = ["3.15.227.142"]
-
-
+IPS = [
+    '3.23.131.184',
+    '3.21.234.85',
+    '18.218.235.26',
+    '18.222.208.169',
+    '3.14.127.31',
+    '3.135.248.46',
+    '3.128.29.36',
+    '3.23.86.91',
+    '3.16.43.25',
+    '18.216.19.178',
+]
 assert len(PROGRAMS) == len(IPS)
 
 username=input("git username: ")
 password=input("git password: ")
 
 import os
-for prg, ip in zip(PROGRAMS, IPS):
-    os.system('scp -i ~/.ssh/aws.pem setup_and_start.sh ubuntu@{}:/home/ubuntu/'.format(ip))
+import subprocess
 
-    # we should not have to wait here
-    os.system('ssh -i ~/.ssh/aws.pem ubuntu@{} "./setup_and_start.sh {} {} {}"'.format(ip, prg, username, password))
+for prg, ip in zip(PROGRAMS, IPS):
+    os.system('scp -oStrictHostKeyChecking=no -i ~/.ssh/aws.pem setup_and_start.sh ubuntu@{}:/home/ubuntu/'.format(ip))
+    os.system('ssh -oStrictHostKeyChecking=no -i ~/.ssh/aws.pem ubuntu@{} "nohup ./setup_and_start.sh {} {} {}" &'.format(ip, prg, username, password))

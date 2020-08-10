@@ -1,5 +1,3 @@
-set -x
-
 prg=${1}
 username=${2}
 pass=${3}
@@ -31,3 +29,6 @@ git config user.email "cereda.ste@gmail.com"
 git config user.name "Stefano Cereda"
 git commit -m "auto upload ${1}"
 git push https://${username}:${pass}@github.com/stefanocereda/polybench_data
+
+sleep 10
+sudo poweroff
