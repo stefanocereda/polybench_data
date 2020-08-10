@@ -10,4 +10,5 @@ chmod +x ./polybench_data/collect.sh
 chmod +x ./polybench-c-4.2.1-beta/utilities/time_benchmark.sh
 
 cd polybench_data
+#adjust runner.py to select the interesting programs to run on this instance
 sudo python3 runner.py
