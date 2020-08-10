@@ -16,7 +16,6 @@ sudo apt update
 sudo apt install --yes gcc-10
 git clone --single-branch --branch new-ds https://github.com/stefanocereda/polybench_data
 
-chmod +x ./polybench_data/collect.sh
 chmod +x ./polybench-c-4.2.1-beta/utilities/time_benchmark.sh
 
 cd ~/polybench_data
