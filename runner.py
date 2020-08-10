@@ -25,7 +25,7 @@ import sys
 
 prg = sys.argv[1]
 print(prg)
-for n_flags in range(len(FLAGS)):
+for n_flags in range(len(FLAGS)+1):
     for opts_enabled in itertools.combinations(FLAGS, n_flags):
         opt_str = ''
         for opt in opts_enabled:
