@@ -36,8 +36,12 @@ IPS = ["3.15.227.142"]
 
 assert len(PROGRAMS) == len(IPS)
 
+username=input("git username")
+password=input("git password")
+
 import os
 for prg, ip in zip(PROGRAMS, IPS):
     os.system('scp -i ~/.ssh/aws.pem setup_and_start.sh ubuntu@{}:/home/ubuntu/'.format(ip))
     os.system('ssh -i ~/.ssh/aws.pem ubuntu@{} "chmod +x ./setup_and_start.sh"'.format(ip))
-    os.system('ssh -i ~/.ssh/aws.pem ubuntu@{} "./setup_and_start.sh {}"'.format(ip, prg))
+    # we should not have to wait here
+    os.system('ssh -i ~/.ssh/aws.pem ubuntu@{} "./setup_and_start.sh {} {} {}"'.format(ip, prg, username, password))

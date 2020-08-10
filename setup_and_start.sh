@@ -1,5 +1,8 @@
-#create ubuntu server 18.04 spot a1.medium instance and run this program on it
 set -x
+
+prg=${1}
+username=${2}
+pass=${3}
 
 wget --content-disposition -c https://downloads.sourceforge.net/project/polybench/polybench-c-4.2.1-beta.tar.gz?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fpolybench%2Ffiles%2Flatest%2Fdownload&ts=1597070379
 
@@ -17,10 +20,13 @@ chmod +x ./polybench-c-4.2.1-beta/utilities/time_benchmark.sh
 
 cd ~/polybench_data
 
-nohup sudo python3 runner.py ${1} >log.out 2>log.err &
+sudo python3 runner.py ${1} >log.out 2>log.err
 
 cd ~/polybench_data
 mv ~/result.csv ~/polybench_data/data/${1}.csv
 git add data/${1}.csv
+
+git config user.email "cereda.ste@gmail.com"
+git config user.name "Stefano Cereda"
 git commit -m "auto upload ${1}"
-git push
+git push https://${username}:${pass}@https://github.com/stefanocereda/polybench_data
