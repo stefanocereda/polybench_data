@@ -4,7 +4,7 @@ OPTIONS=$2
 cd ~/polybench-c-4.2.1-beta
 
 # compile
-gcc-10 -O2 -lc ${OPTIONS} -I utilities -I ${PROGRAM} utilities/polybench.c ${PROGRAM}.c -DPOLYBENCH_LINUX_FIFO_SCHEDULER -DPOLYBENCH_TIME -DSTANDARD_DATASET -o out
+gcc-10 -O2 -lc -lm ${OPTIONS} -I utilities -I ${PROGRAM} utilities/polybench.c ${PROGRAM}.c -DPOLYBENCH_LINUX_FIFO_SCHEDULER -DPOLYBENCH_TIME -DSTANDARD_DATASET -o out
 
  # run
 ./utilities/time_benchmark.sh ./out > log
