@@ -1,5 +1,8 @@
-#create ubuntu server 18.04 spot a1.medium instance
+#create ubuntu server 18.04 spot a1.medium instance and run this program on it
+
 wget --content-disposition -c https://downloads.sourceforge.net/project/polybench/polybench-c-4.2.1-beta.tar.gz?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fpolybench%2Ffiles%2Flatest%2Fdownload&ts=1597070379
+
+sleep 10
 
 tar xvf polybench-c-4.2.1-beta.tar.gz
 
@@ -12,5 +15,7 @@ chmod +x ./polybench_data/collect.sh
 chmod +x ./polybench-c-4.2.1-beta/utilities/time_benchmark.sh
 
 cd polybench_data
-#adjust runner.py to select the interesting programs to run on this instance
-nohup sudo python3 runner.py >log.out 2>log.err &
+
+nohup sudo python3 runner.py ${1} >log.out 2>log.err &
+
+mv ~/result.csv ./${1}.csv

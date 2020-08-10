@@ -12,6 +12,7 @@ gcc-10 -O2 ${OPTIONS} -I utilities -I ${PROGRAM} utilities/polybench.c ${PROGRAM
 # store result
 avg=$(cat log | grep Normalized | grep -o '[0-9.]*')
 max_dev=$(cat log | grep deviation | grep -o '[0-9.]*' | tail -1)
+file_size=$(stat -c %s ./out)
 
 cd ~
 echo ${PROGRAM},${OPTIONS},${avg},${max_dev} >> result.csv
