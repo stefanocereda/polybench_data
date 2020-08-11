@@ -22,7 +22,8 @@ sudo python3 runner.py ${1} >log.out 2>log.err
 
 cd ~/polybench_data
 mkdir data
-mv ~/result.csv ~/polybench_data/data/${ip}.csv
+mv ~/result_MINI.csv ~/polybench_data/data/MINI_${ip}.csv
+mv ~/result_SMALL.csv ~/polybench_data/data/SMALL_${ip}.csv
 git add data/${ip}.csv
 
 git config user.email "cereda.ste@gmail.com"
