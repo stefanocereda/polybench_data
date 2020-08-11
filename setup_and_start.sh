@@ -27,6 +27,7 @@ git add data/${ip}.csv
 
 git config user.email "cereda.ste@gmail.com"
 git config user.name "Stefano Cereda"
+git pull
 git commit -m "auto upload ${1}"
 git push https://${username}:${pass}@github.com/stefanocereda/polybench_data
 
