@@ -11,7 +11,6 @@ tar xvf polybench-c-4.2.1-beta.tar.gz
 chmod +x ./polybench-c-4.2.1-beta/utilities/time_benchmark.sh
 
 sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
-sudo apt update
 sudo apt install --yes gcc-10 python3-pandas
 
 git clone --single-branch --branch new-ds https://github.com/stefanocereda/polybench_data
@@ -21,7 +20,7 @@ wget https://polybench.s3.us-east-2.amazonaws.com/${filename}.csv
 
 # Use sudo for fifo polybench
 cd ~/polybench_data
-sudo python3 runner.py ${1} >log.out 2>log.err
+sudo python3 runner.py ${prg} >log.out 2>log.err
 
 cd ~/polybench_data
 mv ~/result_MINI.csv ~/polybench_data/data/MINI_${ip}.csv
