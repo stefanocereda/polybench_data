@@ -13,7 +13,7 @@ sudo apt update
 sudo apt install --yes gcc-10 python3-pandas
 
 git clone --single-branch --branch new-ds https://github.com/stefanocereda/polybench_data
-cd ~/polybench_data/merged
+cd ~/polybench_data/data/merged
 filename=$(sed 's/\//_/g' <<< $prg)
 wget https://polybench.s3.us-east-2.amazonaws.com/${filename}.csv
 
