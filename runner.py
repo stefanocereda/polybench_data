@@ -26,8 +26,13 @@ import pandas as pd
 
 prg = sys.argv[1]
 
-dataset = pd.read_csv('./data/merged/{}.csv'.format(prg.replace('/','_')))
-dataset.set_index(['benchmark', 'dataset', 'optimisations'], inplace=True)
+try:
+    dataset = pd.read_csv('./data/merged/{}.csv'.format(prg.replace('/','_')))
+except:
+    dataset = None
+
+if dataset is not None:
+    dataset.set_index(['benchmark', 'dataset', 'optimisations'], inplace=True)
 
 
 print(prg)
@@ -38,5 +43,5 @@ for ds in ['MINI', 'SMALL']:
             for opt in opts_enabled:
                 opt_str += opt
                 opt_str += ' '
-            if (prg, ds, opt_str) not in dataset.index:
+            if dataset is None or (prg, ds, opt_str) not in dataset.index:
                 os.system('./run_prg.sh {} "{}" {}'.format(prg, opt_str, ds))
