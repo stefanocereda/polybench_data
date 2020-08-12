@@ -11,20 +11,25 @@ tar xvf polybench-c-4.2.1-beta.tar.gz
 
 sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
 sudo apt update
-sudo apt install --yes gcc-10
+sudo apt install --yes gcc-10 python3-pip
 git clone --single-branch --branch new-ds https://github.com/stefanocereda/polybench_data
 
 chmod +x ./polybench-c-4.2.1-beta/utilities/time_benchmark.sh
 
 cd ~/polybench_data
+mv ~/merged.csv ./data/merged.csv
 
+# Use sudo for fifo polybench
+sudo -H pip3 install cython
+sudo -H pip3 install numpy
+sudo -H pip3 install pandas
 sudo python3 runner.py ${1} >log.out 2>log.err
 
 cd ~/polybench_data
-mkdir data
 mv ~/result_MINI.csv ~/polybench_data/data/MINI_${ip}.csv
 mv ~/result_SMALL.csv ~/polybench_data/data/SMALL_${ip}.csv
-git add data/${ip}.csv
+git add data/MINI_${ip}.csv
+git add data/SMALL_${ip}.csv
 
 git config user.email "cereda.ste@gmail.com"
 git config user.name "Stefano Cereda"
