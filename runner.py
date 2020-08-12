@@ -29,14 +29,17 @@ prg = sys.argv[1]
 dataset = pd.read_csv('./data/merged/{}.csv'.format(prg.replace('/','_')))
 
 print(prg)
+match_prg = dataset['benchmark'] == prg
 for ds in ['MINI', 'SMALL']:
+    match_ds = dataset['dataset'] == ds
+    match_ds = match_prg & match_ds
     for n_flags in range(len(FLAGS)+1):
         for opts_enabled in itertools.combinations(FLAGS, n_flags):
             opt_str = ''
             for opt in opts_enabled:
                 opt_str += opt
                 opt_str += ' '
-            if sum((dataset['optimisations'] == opt_str) &
-                   (dataset['benchmark'] == prg) &
-                   (dataset['dataset'] == ds)) != 1:
+            match_flag = dataset['optimisations'] == opt_str
+            match_flag = match_flag & match_ds
+            if sum(match_flag) != 1:
                 os.system('./run_prg.sh {} "{}" {}'.format(prg, opt_str, ds))
