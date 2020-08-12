@@ -19,9 +19,8 @@ for fn in filenames:
 merged = pd.concat(csvs)
 
 # we should not have more than one line per benchmark/optimisations/dataset
-dup = merged[['benchmark', 'optimisations', 'dataset']].apply(frozenset,
-                                                              axis=1).duplicated()
-merged.drop(dup)
+merged.drop_duplicates(subset=['benchmark', 'optimisations', 'dataset'],
+                       keep='first', inplace=True)
 
 # split into programs
 for prg in merged['benchmark'].unique():
