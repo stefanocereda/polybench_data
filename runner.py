@@ -39,4 +39,4 @@ for ds in ['MINI', 'SMALL']:
             if sum((dataset['optimisations'] == opt_str) &
                    (dataset['benchmark'] == prg) &
                    (dataset['dataset'] == ds)) != 1:
-                os.system('./run_prg.sh {} "{}"'.format(prg, opt_str, ds))
+                os.system('./run_prg.sh {} "{}" {}'.format(prg, opt_str, ds))

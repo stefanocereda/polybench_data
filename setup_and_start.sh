@@ -1,3 +1,5 @@
+#!/bin/bash
+
 prg=${1}
 username=${2}
 pass=${3}
