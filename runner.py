@@ -24,9 +24,10 @@ import os
 import sys
 import pandas as pd
 
-dataset = pd.read_csv('./data/merged.csv')
-
 prg = sys.argv[1]
+
+dataset = pd.read_csv('./data/merged/{}.csv'.format(prg.replace('/','_')))
+
 print(prg)
 for ds in ['MINI', 'SMALL']:
     for n_flags in range(len(FLAGS)+1):

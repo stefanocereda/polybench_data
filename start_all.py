@@ -43,6 +43,5 @@ import time
 
 for prg, ip in zip(PROGRAMS, IPS):
     os.system('scp -oStrictHostKeyChecking=no -i ~/.ssh/aws.pem setup_and_start.sh ubuntu@{}:/home/ubuntu/'.format(ip))
-    os.system('scp -oStrictHostKeyChecking=no -i ~/.ssh/aws.pem data/merged.csv ubuntu@{}:/home/ubuntu/merged.csv'.format(ip))
     time.sleep(10)
     os.system('ssh -oStrictHostKeyChecking=no -i ~/.ssh/aws.pem ubuntu@{} "nohup ./setup_and_start.sh {} {} {}" &'.format(ip, prg, username, password))

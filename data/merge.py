@@ -4,7 +4,7 @@ import os
 filenames = os.listdir(os.getcwd())
 csvs = []
 for fn in filenames:
-    if fn != 'merged.csv' and fn[-4:] == '.csv':
+    if fn[-4:] == '.csv':
         if 'MINI' in fn:
             ds = 'MINI'
         elif 'SMALL' in fn:
@@ -17,4 +17,9 @@ for fn in filenames:
         csv['dataset'] = ds
         csvs.append(csv)
 merged = pd.concat(csvs)
-merged.to_csv('./merged.csv', index=False)
+
+# split into programs
+for prg in merged['benchmark'].unique():
+    csv = merged[merged['benchmark'] == prg]
+    csv.to_csv('./merged/{}.csv'.format(prg.replace('/','_')), index=False)
+print("Upload file to remote location with: aws s3 sync merged/ s3://polybench/")
