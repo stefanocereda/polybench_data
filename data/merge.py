@@ -18,6 +18,11 @@ for fn in filenames:
         csvs.append(csv)
 merged = pd.concat(csvs)
 
+# we should not have more than one line per benchmark/optimisations/dataset
+dup = merged[['benchmark', 'optimisations', 'dataset']].apply(frozenset,
+                                                              axis=1).duplicated()
+merged.drop(dup)
+
 # split into programs
 for prg in merged['benchmark'].unique():
     csv = merged[merged['benchmark'] == prg]
