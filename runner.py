@@ -27,19 +27,16 @@ import pandas as pd
 prg = sys.argv[1]
 
 dataset = pd.read_csv('./data/merged/{}.csv'.format(prg.replace('/','_')))
+dataset.set_index(['benchmark', 'dataset', 'optimisations'], inplace=True)
+
 
 print(prg)
-match_prg = dataset['benchmark'] == prg
 for ds in ['MINI', 'SMALL']:
-    match_ds = dataset['dataset'] == ds
-    match_ds = match_prg & match_ds
     for n_flags in range(len(FLAGS)+1):
         for opts_enabled in itertools.combinations(FLAGS, n_flags):
             opt_str = ''
             for opt in opts_enabled:
                 opt_str += opt
                 opt_str += ' '
-            match_flag = dataset['optimisations'] == opt_str
-            match_flag = match_flag & match_ds
-            if sum(match_flag) != 1:
+            if (prg, ds, opt_str) not in dataset.index:
                 os.system('./run_prg.sh {} "{}" {}'.format(prg, opt_str, ds))
