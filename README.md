@@ -1,17 +1,17 @@
 # PolyBench compiler autotuning dataset 
-This repository contains the dataset we used for the paper "A Collaborative Filtering Approah for the Automatic Tuning of Compiler Optimisations" available at https://arxiv.org/abs/2005.04092, which will be published in the 21st ACM SIGPLAN/SIGBED International Conference on Languages, Compilers, and Tools for Embedded Systems (LCTES 2020).
+This repository contains the dataset we used for the paper "A Collaborative Filtering Approah for the Automatic Tuning of Compiler Optimisations" available at https://arxiv.org/abs/2005.04092 and https://dl.acm.org/doi/abs/10.1145/3372799.3394361, which has been published in the 21st ACM SIGPLAN/SIGBED International Conference on Languages, Compilers, and Tools for Embedded Systems (LCTES 2020).
 
 If you use these data please cite our paper:
 ```
-@misc{cereda2020collaborative,
-    title={A Collaborative Filtering Approach for the Automatic Tuning of Compiler Optimisations},
-    author={Stefano Cereda and Gianluca Palermo and Paolo Cremonesi and Stefano Doni},
-    year={2020},
-    eprint={2005.04092},
-    archivePrefix={arXiv},
-    primaryClass={cs.DC}
+@inproceedings{cereda2020collaborative,
+  title={A Collaborative Filtering Approach for the Automatic Tuning of Compiler Optimisations},
+  author={Cereda, Stefano and Palermo, Gianluca and Cremonesi, Paolo and Doni, Stefano},
+  booktitle={The 21st ACM SIGPLAN/SIGBED Conference on Languages, Compilers, and Tools for Embedded Systems},
+  pages={15--25},
+  year={2020}
 }
 ```
+
 
 ## Optimisations
 We follow the approach used in https://github.com/amirjamez/COBAYN, and all the files have the same format used in COBAYN.
