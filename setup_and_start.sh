@@ -23,15 +23,15 @@ cd ~/polybench_data
 sudo python3 runner.py ${prg} >log.out 2>log.err
 
 cd ~/polybench_data
-mv ~/result_MINI.csv ~/polybench_data/data/MINI_${ip}.csv
-mv ~/result_SMALL.csv ~/polybench_data/data/SMALL_${ip}.csv
-git add data/MINI_${ip}.csv
-git add data/SMALL_${ip}.csv
+git pull
+cat ~/result_MINI.csv >> ~/polybench_data/data/MINI_${prg}.csv
+cat ~/result_SMALL.csv >> ~/polybench_data/data/SMALL_${prg}.csv
+git add data/MINI_${prg}.csv
+git add data/SMALL_${prg}.csv
 
 git config user.email "cereda.ste@gmail.com"
 git config user.name "Stefano Cereda"
-git pull
-git commit -m "auto upload ${1}"
+git commit -m "auto upload ${prg}"
 git push https://${username}:${pass}@github.com/stefanocereda/polybench_data
 
 sleep 10
