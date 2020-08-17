@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+import itertools
 
 filenames = os.listdir(os.getcwd())
 csvs = []
@@ -22,8 +23,10 @@ merged = pd.concat(csvs)
 merged.drop_duplicates(subset=['benchmark', 'optimisations', 'dataset'],
                        keep='first', inplace=True)
 
-# split into programs
-for prg in merged['benchmark'].unique():
-    csv = merged[merged['benchmark'] == prg]
-    csv.to_csv('./merged/{}.csv'.format(prg.replace('/','_')), index=False)
+# split into program/dataset
+for prg, ds in itertools.product(merged['benchmark'].unique(),
+                                 merged['dataset'].unique()):
+    csv = merged[(merged['benchmark'] == prg) &
+                 (merged['dataset'] == ds)]
+    csv.to_csv('./merged/{}_{}.csv'.format(prg.replace('/','_'), ds), index=False)
 print("Upload file to remote location with: aws s3 sync merged/ s3://polybench/")

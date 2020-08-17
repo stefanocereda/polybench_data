@@ -49,6 +49,11 @@ FLAGS = [
     "-fversion-loops-for-strides"
 ]
 
+DATASETS = [
+    'MINI',
+    'SMALL',
+    'STANDARD'
+]
 
 import itertools
 import os
@@ -57,28 +62,27 @@ import pandas as pd
 tot_missing = 0
 tot_done = 0
 
-for prg in PROGRAMS:
+for prg, ds in itertools.product(PROGRAMS, DATASETS):
     try:
-        dataset = pd.read_csv('./data/merged/{}.csv'.format(prg.replace('/','_')))
+        dataset = pd.read_csv('./data/merged/{}_{}.csv'.format(prg.replace('/','_'), ds))
         dataset.set_index(['benchmark', 'dataset', 'optimisations'], inplace=True)
     except:
         dataset = None
 
-    for ds in ['MINI', 'SMALL']:
-        missing = 0
+    missing = 0
 
-        for n_flags in range(len(FLAGS)+1):
-            for opts_enabled in itertools.combinations(FLAGS, n_flags):
-                opt_str = ''
-                for opt in opts_enabled:
-                    opt_str += opt
-                    opt_str += ' '
-                if dataset is None or (prg, ds, opt_str) not in dataset.index:
-                    missing += 1
-                else:
-                    tot_done +=1
-        tot_missing += missing
-        print('{},{},{}'.format(prg, ds, missing))
+    for n_flags in range(len(FLAGS)+1):
+        for opts_enabled in itertools.combinations(FLAGS, n_flags):
+            opt_str = ''
+            for opt in opts_enabled:
+                opt_str += opt
+                opt_str += ' '
+            if dataset is None or (prg, ds, opt_str) not in dataset.index and opt_str != '':
+                missing += 1
+            else:
+                tot_done +=1
+    tot_missing += missing
+    print('{},{},{}'.format(prg, ds, missing))
 
 print("Missing {} samples out of {}, we are at {}%".format(tot_missing,
                                                            tot_missing+tot_done, tot_done/(tot_done+tot_missing)*100))

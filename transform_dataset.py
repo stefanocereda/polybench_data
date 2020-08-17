@@ -50,7 +50,8 @@ FLAGS = [
 ]
 DATASETS = [
     'MINI',
-    'SMALL'
+    'SMALL',
+    'STANDARD'
 ]
 
 
@@ -58,8 +59,9 @@ import pandas as pd
 
 all_dss = []
 for prg in PROGRAMS:
-    ds = pd.read_csv('./data/merged/{}.csv'.format(prg.replace('/', '_')))
-    all_dss.append(ds)
+    for ds in DATASETS:
+        ds = pd.read_csv('./data/merged/{}_{}.csv'.format(prg.replace('/', '_'), ds))
+        all_dss.append(ds)
 
 dataset = pd.concat(all_dss)
 for flag in FLAGS:
