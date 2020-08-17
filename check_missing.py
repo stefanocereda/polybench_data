@@ -70,6 +70,7 @@ for prg, ds in itertools.product(PROGRAMS, DATASETS):
         dataset = None
 
     missing = 0
+    error = False
 
     for n_flags in range(len(FLAGS)+1):
         for opts_enabled in itertools.combinations(FLAGS, n_flags):
@@ -79,10 +80,16 @@ for prg, ds in itertools.product(PROGRAMS, DATASETS):
                 opt_str += ' '
             if dataset is None or (prg, ds, opt_str) not in dataset.index and opt_str != '':
                 missing += 1
+            elif opt_str != '' and pd.isnull(dataset.loc[prg, ds, opt_str]['avg time']):
+                if not error:
+                    print("{} {} has null values!".format(prg, ds))
+                    error = True
+                missing += 1
             else:
                 tot_done +=1
     tot_missing += missing
-    print('{},{},{}'.format(prg, ds, missing))
+    if missing > 0:
+        print('{},{},{}'.format(prg, ds, missing))
 
 print("Missing {} samples out of {}, we are at {}%".format(tot_missing,
                                                            tot_missing+tot_done, tot_done/(tot_done+tot_missing)*100))

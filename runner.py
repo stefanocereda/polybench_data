@@ -43,5 +43,7 @@ for n_flags in range(len(FLAGS)+1):
         for opt in opts_enabled:
             opt_str += opt
             opt_str += ' '
-        if dataset is None or (prg, ds, opt_str) not in dataset.index:
+        if ((dataset is None)
+                or ((prg, ds, opt_str) not in dataset.index)
+                or (pd.isnull(dataset.loc[(prg, ds, opt_str)]['avg time']))):
             os.system('./run_prg.sh {} "{}" {}'.format(prg, opt_str, ds))

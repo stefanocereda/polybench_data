@@ -10,6 +10,8 @@ for fn in filenames:
             ds = 'MINI'
         elif 'SMALL' in fn:
             ds = 'SMALL'
+        elif 'STANDARD' in fn:
+            ds = 'STANDARD'
         else:
             raise Exception("Unknown dataset")
         csv = pd.read_csv(fn, names=['benchmark', 'optimisations',

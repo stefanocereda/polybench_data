@@ -34,4 +34,4 @@ git commit -m "auto upload ${filename}"
 git push https://${username}:${pass}@github.com/stefanocereda/polybench_data
 
 sleep 10
-#sudo poweroff
+sudo poweroff
